@@ -14,6 +14,17 @@ except ModuleNotFoundError as e:
 st.set_page_config(page_title="Nature & Nurture: Patient Report", layout="centered")
 st.title("🧬 Personalized Genomic & Behavioral Report")
 
+# Scripture rotation - gentle encouragement
+import random
+scriptures = [
+    "I praise You because I am fearfully and wonderfully made. – Psalm 139:14",
+    "The Lord is near to the brokenhearted and saves the crushed in spirit. – Psalm 34:18",
+    "For I know the plans I have for you, declares the Lord. – Jeremiah 29:11",
+    "Come to me, all who are weary and burdened, and I will give you rest. – Matthew 11:28",
+    "When I am weak, then I am strong. – 2 Corinthians 12:10"
+]
+st.caption(random.choice(scriptures))
+
 uploaded_file = st.file_uploader("Upload patient JSON file", type="json")
 if uploaded_file:
     import io
@@ -47,4 +58,4 @@ if uploaded_file:
         st.markdown("### 📌 Genes with Clinical Significance:")
         st.write(", ".join(sig_genes))
     else:
-        st.info("No clinically
+        st.info("No clinically significant variants detected.")
