@@ -1,12 +1,3 @@
-# This script is intended to be run using Streamlit locally or in Streamlit Cloud.
-# To run locally: save as `streamlit_ed_report_app.py` and execute `streamlit run streamlit_ed_report_app.py`
-
-try:
-    import streamlit as st
-    import json
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import seaborn as sns
 except ModuleNotFoundError as e:
     print("This script requires the 'streamlit' module. Please install it using 'pip install streamlit' and run it locally.")
     raise e
@@ -98,3 +89,4 @@ if uploaded_file:
 
         if st.button("📤 Share with your clinician or download"):
             st.markdown("Coming soon: Export to PDF or email integration.")
+
