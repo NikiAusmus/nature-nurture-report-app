@@ -60,7 +60,7 @@ if uploaded_file:
     # Genomic results
     st.markdown("### 🧬 Genomic Results")
     gene_df = pd.DataFrame(data["genomic_results"])
-    st.dataframe(gene_df.style.highlight_null(null_color='red'), use_container_width=True)
+    st.dataframe(gene_df, use_container_width=True)
 
     # Highlight significant variants
     st.markdown("### 📌 Genes with Clinical Significance")
@@ -74,3 +74,4 @@ if uploaded_file:
     # Download section (placeholder)
     if st.button("📤 Share with your clinician or download"):
         st.markdown("Coming soon: Export to PDF or email integration.")
+   
