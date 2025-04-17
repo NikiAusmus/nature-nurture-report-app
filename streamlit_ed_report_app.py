@@ -35,27 +35,42 @@ if uploaded_file:
         st.stop()
 
     # Display patient info
-    st.subheader("Patient Summary")
+    st.markdown("### 👤 Patient Profile")
     info = data["patient_info"]
-    st.markdown(f"**Name:** {info['Name']}  ")
-    st.markdown(f"**Age:** {info['Age']}  |  **Sex:** {info['Sex']}")
-    st.markdown(f"**Family History of ED:** {info['Family_History_ED']}  |  **Prior ED Diagnosis:** {info['Prior_ED_Diagnosis']}")
+    st.info(
+        f"""
+        **Name**: {info['Name']}  
+        **Age**: {info['Age']}  
+        **Sex**: {info['Sex']}  
+        **Family History of ED**: {info['Family_History_ED']}  
+        **Prior ED Diagnosis**: {info['Prior_ED_Diagnosis']}
+        """,
+        icon="👨‍👩‍👧"
+    )
 
     # Show behavioral scores
-    st.subheader("🧠 Behavioral Disposition")
+    st.markdown("### 🧠 Behavioral Trait Summary")
     b_scores = data["behavioral_scores"]
     b_df = pd.DataFrame.from_dict(b_scores, orient='index', columns=['Score'])
     st.bar_chart(b_df)
 
+    for trait, score in b_scores.items():
+        st.success(f"**{trait}**: {score}", icon="🧩")
+
     # Genomic results
-    st.subheader("🧬 Genomic Markers")
+    st.markdown("### 🧬 Genomic Results")
     gene_df = pd.DataFrame(data["genomic_results"])
-    st.dataframe(gene_df, use_container_width=True)
+    st.dataframe(gene_df.style.highlight_null(null_color='red'), use_container_width=True)
 
     # Highlight significant variants
+    st.markdown("### 📌 Genes with Clinical Significance")
     sig_genes = gene_df[(gene_df['Genotype'].str.contains("T") | gene_df['Methylation_Status'] != "-")]['Gene'].unique().tolist()
     if sig_genes:
-        st.markdown("### 📌 Genes with Clinical Significance:")
-        st.write(", ".join(sig_genes))
+        for gene in sig_genes:
+            st.markdown(f"✅ **{gene}**", unsafe_allow_html=True)
     else:
         st.info("No clinically significant variants detected.")
+
+    # Download section (placeholder)
+    if st.button("📤 Share with your clinician or download"):
+        st.markdown("Coming soon: Export to PDF or email integration.")
