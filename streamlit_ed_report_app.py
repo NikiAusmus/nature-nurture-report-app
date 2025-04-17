@@ -1,4 +1,4 @@
-s script is intended to be run using Streamlit locally or in Streamlit Cloud.
+# This script is intended to be run using Streamlit locally or in Streamlit Cloud.
 # To run locally: save as `streamlit_ed_report_app.py` and execute `streamlit run streamlit_ed_report_app.py`
 
 try:
@@ -47,21 +47,4 @@ if uploaded_file:
         st.markdown("### 📌 Genes with Clinical Significance:")
         st.write(", ".join(sig_genes))
     else:
-        st.info("No clinically significant variants detected.")
-
-    # Export button
-    if st.button("📥 Download Report Text"):
-        report_lines = [
-            f"Patient: {info['Name']}\nAge: {info['Age']}\nSex: {info['Sex']}\n",
-            "Behavioral Scores:\n" + "\n".join([f"- {k}: {v}" for k, v in b_scores.items()]) + "\n",
-            "Significant Genes:\n" + (", ".join(sig_genes) if sig_genes else "None")
-        ]
-        st.download_button(
-            label="Download Report",
-            data="\n\n".join(report_lines),
-            file_name=f"{info['Name']}_report.txt",
-            mime="text/plain"
-        )
-
-
-    
+        st.info("No clinically
