@@ -1,13 +1,13 @@
-try:
-    import streamlit as st
-    import json
-    import pandas as pd
-    import matplotlib.pyplot as plt
-except ModuleNotFoundError as e:
-    print("This script requires the 'streamlit' module. Please install it using 'pip install streamlit' and run it locally.")
-    raise e
+# Nature & Nurture: Genomic Wellness Report
 
-# Load patient data
+import streamlit as st
+import json
+import pandas as pd
+import matplotlib.pyplot as plt
+import random
+import io
+
+# Page setup
 st.set_page_config(page_title="Nature & Nurture: Genomic Wellness Report", layout="wide")
 st.markdown("""
     <style>
@@ -24,8 +24,7 @@ st.markdown("""
 
 st.title("🌳 Nature & Nurture: Genomic Wellness Report")
 
-# Scripture rotation - gentle encouragement
-import random
+# Rotating Scripture
 scriptures = [
     "I praise You because I am fearfully and wonderfully made. – Psalm 139:14",
     "The Lord is near to the brokenhearted and saves the crushed in spirit. – Psalm 34:18",
@@ -35,9 +34,9 @@ scriptures = [
 ]
 st.caption(random.choice(scriptures))
 
-uploaded_file = st.file_uploader("Upload patient JSON file", type="json")
+# File uploader
+uploaded_file = st.file_uploader("📤 Upload patient JSON file", type="json")
 if uploaded_file:
-    import io
     try:
         data = json.load(io.StringIO(uploaded_file.getvalue().decode("utf-8")))
     except Exception as e:
