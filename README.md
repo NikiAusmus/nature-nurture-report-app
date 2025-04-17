@@ -1,0 +1,1 @@
+streamlit run streamlit_ed_report_app.py
