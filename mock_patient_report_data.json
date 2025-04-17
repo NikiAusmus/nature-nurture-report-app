@@ -1,1 +1,15 @@
-
+{
+  "patient_info": {
+    "Patient_ID": "12345A",
+    "Name": "Alex Taylor",
+    "Age": 17,
+    "Sex": "Female",
+    "Family_History_ED": "Yes",
+    "Prior_ED_Diagnosis": "Yes"
+  },
+  "behavioral_scores": {
+    "Anxiety": 8,
+    "Perfectionism": 10,
+    "OCD_Traits": 8
+  },
+  "gen
